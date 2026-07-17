@@ -1,149 +1,287 @@
-<?php $isHome = request()->routeIs('home'); ?>
-<nav x-data="{ mobileOpen: false, scrolled: false }"
-     x-init="scrolled = window.scrollY > 20; window.addEventListener('scroll', () => { scrolled = window.scrollY > 20 })"
-     :class="scrolled ? 'bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm' : '<?php echo e($isHome ? 'bg-transparent' : 'bg-white border-b border-gray-200'); ?>'"
-     class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+    <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
+                <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="<?php echo e(route('home')); ?>" :class="scrolled ? 'text-primary-600' : '<?php echo e($isHome ? 'text-white' : 'text-primary-600'); ?>'" class="text-xl font-bold transition-colors duration-300">
-                        GoRide
+                    <a href="<?php echo e(auth()->check() ? route('dashboard') : route('home')); ?>">
+                        <?php if (isset($component)) { $__componentOriginal8892e718f3d0d7a916180885c6f012e7 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal8892e718f3d0d7a916180885c6f012e7 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.application-logo','data' => ['class' => 'block h-9 w-auto fill-current text-gray-800']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('application-logo'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'block h-9 w-auto fill-current text-gray-800']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal8892e718f3d0d7a916180885c6f012e7)): ?>
+<?php $attributes = $__attributesOriginal8892e718f3d0d7a916180885c6f012e7; ?>
+<?php unset($__attributesOriginal8892e718f3d0d7a916180885c6f012e7); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal8892e718f3d0d7a916180885c6f012e7)): ?>
+<?php $component = $__componentOriginal8892e718f3d0d7a916180885c6f012e7; ?>
+<?php unset($__componentOriginal8892e718f3d0d7a916180885c6f012e7); ?>
+<?php endif; ?>
                     </a>
                 </div>
 
-                <div class="hidden space-x-1 sm:-my-px sm:ms-8 sm:flex">
-                    <?php if(auth()->guard()->check()): ?>
-                        <?php $active = request()->routeIs('dashboard'); ?>
-                        <a href="<?php echo e(route('dashboard')); ?>" :class="scrolled ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-50' : '<?php echo e($active ? 'text-primary-600 bg-primary-50' : ($isHome ? 'text-white/90 hover:text-white hover:bg-white/10' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50')); ?>'" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg transition duration-150">
-                            <?php echo e(__('app.dashboard')); ?>
+                <!-- Navigation Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <?php if (isset($component)) { $__componentOriginalc295f12dca9d42f28a259237a5724830 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalc295f12dca9d42f28a259237a5724830 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.nav-link','data' => ['href' => route('dashboard'),'active' => request()->routeIs('dashboard')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('nav-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('dashboard')),'active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('dashboard'))]); ?>
+                        <?php echo e(__('Dashboard')); ?>
 
-                        </a>
-                    <?php else: ?>
-                        <?php $active = request()->routeIs('home'); ?>
-                        <a href="<?php echo e(route('home')); ?>" :class="scrolled ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-50' : '<?php echo e($active ? 'text-primary-600 bg-primary-50' : ($isHome ? 'text-white/90 hover:text-white hover:bg-white/10' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50')); ?>'" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg transition duration-150">
-                            Home
-                        </a>
-                        <a href="#services" :class="scrolled ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-50' : '<?php echo e($isHome ? 'text-white/90 hover:text-white hover:bg-white/10' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'); ?>'" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg transition duration-150">
-                            <?php echo e(__('app.services')); ?>
-
-                        </a>
-                        <a href="#about" :class="scrolled ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-50' : '<?php echo e($isHome ? 'text-white/90 hover:text-white hover:bg-white/10' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'); ?>'" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg transition duration-150">
-                            <?php echo e(__('app.about')); ?>
-
-                        </a>
-                        <a href="#download" :class="scrolled ? 'text-gray-600 hover:text-gray-900 hover:bg-gray-50' : '<?php echo e($isHome ? 'text-white/90 hover:text-white hover:bg-white/10' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'); ?>'" class="inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg transition duration-150">
-                            <?php echo e(__('app.download')); ?>
-
-                        </a>
-                    <?php endif; ?>
+                     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalc295f12dca9d42f28a259237a5724830)): ?>
+<?php $attributes = $__attributesOriginalc295f12dca9d42f28a259237a5724830; ?>
+<?php unset($__attributesOriginalc295f12dca9d42f28a259237a5724830); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc295f12dca9d42f28a259237a5724830)): ?>
+<?php $component = $__componentOriginalc295f12dca9d42f28a259237a5724830; ?>
+<?php unset($__componentOriginalc295f12dca9d42f28a259237a5724830); ?>
+<?php endif; ?>
                 </div>
             </div>
 
+            <!-- Settings Dropdown -->
+            <?php if(auth()->guard()->check()): ?>
             <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <!-- Language Toggle -->
-                <div class="me-3 relative" x-data="{ langOpen: false }">
-                    <button @click="langOpen = ! langOpen" :class="scrolled ? 'text-gray-700 bg-white border border-gray-200 hover:bg-gray-50' : '<?php echo e($isHome ? 'text-white bg-white/10 border border-white/20 hover:bg-white/20' : 'text-gray-700 bg-white border border-gray-200 hover:bg-gray-50'); ?>'" class="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition duration-150">
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5a17.92 17.92 0 01-8.716-2.247m0 0A9 9 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg>
-                        <?php echo e(strtoupper(app()->getLocale())); ?>
+                <?php if (isset($component)) { $__componentOriginaldf8083d4a852c446488d8d384bbc7cbe = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginaldf8083d4a852c446488d8d384bbc7cbe = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.dropdown','data' => ['align' => 'right','width' => '48']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('dropdown'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['align' => 'right','width' => '48']); ?>
+                     <?php $__env->slot('trigger', null, []); ?> 
+                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                            <div><?php echo e(Auth::user()->name); ?></div>
 
-                        <svg :class="scrolled ? 'text-gray-400' : '<?php echo e($isHome ? 'text-white/70' : 'text-gray-400'); ?>'" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
-                    </button>
-                    <div x-show="langOpen"
-                         x-transition:enter="transition ease-out duration-200"
-                         x-transition:enter-start="opacity-0 scale-95"
-                         x-transition:enter-end="opacity-100 scale-100"
-                         x-transition:leave="transition ease-in duration-75"
-                         x-transition:leave-start="opacity-100 scale-100"
-                         x-transition:leave-end="opacity-0 scale-95"
-                         class="absolute z-50 mt-2 w-32 rounded-xl shadow-lg border border-gray-100 ltr:origin-top-right rtl:origin-top-left end-0 py-1 bg-white"
-                         style="display: none;"
-                         @click.outside="langOpen = false">
-                        <a href="?lang=en" class="block px-4 py-2 text-sm <?php echo e(app()->getLocale() === 'en' ? 'text-primary-600 bg-primary-50 font-semibold' : 'text-gray-700 hover:bg-gray-50'); ?> transition duration-150">English</a>
-                        <a href="?lang=bn" class="block px-4 py-2 text-sm <?php echo e(app()->getLocale() === 'bn' ? 'text-primary-600 bg-primary-50 font-semibold' : 'text-gray-700 hover:bg-gray-50'); ?> transition duration-150">বাংলা</a>
-                    </div>
-                </div>
-
-                <?php if(auth()->guard()->check()): ?>
-                <div class="relative" x-data="{ userOpen: false }" @click.outside="userOpen = false" @close.stop="userOpen = false">
-                    <div @click="userOpen = ! userOpen">
-                        <button :class="scrolled ? 'text-gray-700 bg-white border border-gray-200 hover:bg-gray-50' : '<?php echo e($isHome ? 'text-white bg-white/10 border border-white/20 hover:bg-white/20' : 'text-gray-700 bg-white border border-gray-200 hover:bg-gray-50'); ?>'" class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition duration-150">
-                            <span :class="scrolled ? 'bg-primary-100 text-primary-700' : '<?php echo e($isHome ? 'bg-white/20 text-white' : 'bg-primary-100 text-primary-700'); ?>'" class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold"><?php echo e(substr(Auth::user()->name, 0, 1)); ?></span>
-                            <span class="hidden sm:inline"><?php echo e(Auth::user()->name); ?></span>
-                            <svg :class="scrolled ? 'text-gray-400' : '<?php echo e($isHome ? 'text-white/70' : 'text-gray-400'); ?>'" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+                            <div class="ms-1">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
                         </button>
-                    </div>
+                     <?php $__env->endSlot(); ?>
 
-                    <div x-show="userOpen"
-                            x-transition:enter="transition ease-out duration-200"
-                            x-transition:enter-start="opacity-0 scale-95"
-                            x-transition:enter-end="opacity-100 scale-100"
-                            x-transition:leave="transition ease-in duration-75"
-                            x-transition:leave-start="opacity-100 scale-100"
-                            x-transition:leave-end="opacity-0 scale-95"
-                            class="absolute z-50 mt-2 w-48 rounded-xl shadow-lg border border-gray-100 ltr:origin-top-right rtl:origin-top-left end-0 py-1 bg-white"
-                            style="display: none;"
-                            @click="userOpen = false">
-                        <a href="<?php echo e(route('profile.edit')); ?>" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition duration-150"><?php echo e(__('app.profile')); ?></a>
+                     <?php $__env->slot('content', null, []); ?> 
+                        <?php if (isset($component)) { $__componentOriginal68cb1971a2b92c9735f83359058f7108 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal68cb1971a2b92c9735f83359058f7108 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.dropdown-link','data' => ['href' => route('profile.edit')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('dropdown-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('profile.edit'))]); ?>
+                            <?php echo e(__('Profile')); ?>
+
+                         <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal68cb1971a2b92c9735f83359058f7108)): ?>
+<?php $attributes = $__attributesOriginal68cb1971a2b92c9735f83359058f7108; ?>
+<?php unset($__attributesOriginal68cb1971a2b92c9735f83359058f7108); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal68cb1971a2b92c9735f83359058f7108)): ?>
+<?php $component = $__componentOriginal68cb1971a2b92c9735f83359058f7108; ?>
+<?php unset($__componentOriginal68cb1971a2b92c9735f83359058f7108); ?>
+<?php endif; ?>
+
+                        <!-- Authentication -->
                         <form method="POST" action="<?php echo e(route('logout')); ?>">
                             <?php echo csrf_field(); ?>
-                            <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition duration-150"><?php echo e(__('app.log_out')); ?></button>
+
+                            <?php if (isset($component)) { $__componentOriginal68cb1971a2b92c9735f83359058f7108 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal68cb1971a2b92c9735f83359058f7108 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.dropdown-link','data' => ['href' => route('logout'),'onclick' => 'event.preventDefault();
+                                                this.closest(\'form\').submit();']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('dropdown-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('logout')),'onclick' => 'event.preventDefault();
+                                                this.closest(\'form\').submit();']); ?>
+                                <?php echo e(__('Log Out')); ?>
+
+                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal68cb1971a2b92c9735f83359058f7108)): ?>
+<?php $attributes = $__attributesOriginal68cb1971a2b92c9735f83359058f7108; ?>
+<?php unset($__attributesOriginal68cb1971a2b92c9735f83359058f7108); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal68cb1971a2b92c9735f83359058f7108)): ?>
+<?php $component = $__componentOriginal68cb1971a2b92c9735f83359058f7108; ?>
+<?php unset($__componentOriginal68cb1971a2b92c9735f83359058f7108); ?>
+<?php endif; ?>
                         </form>
-                    </div>
-                </div>
-                <?php else: ?>
-                    <a href="<?php echo e(route('login')); ?>" :class="scrolled ? 'bg-primary-600 text-white hover:bg-primary-700' : '<?php echo e($isHome ? 'bg-white text-primary-700 hover:bg-primary-50' : 'bg-primary-600 text-white hover:bg-primary-700'); ?>'" class="px-5 py-2.5 text-sm font-semibold rounded-lg transition duration-150">
-                        <?php echo e(__('app.sign_in')); ?>
-
-                    </a>
-                <?php endif; ?>
+                     <?php $__env->endSlot(); ?>
+                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginaldf8083d4a852c446488d8d384bbc7cbe)): ?>
+<?php $attributes = $__attributesOriginaldf8083d4a852c446488d8d384bbc7cbe; ?>
+<?php unset($__attributesOriginaldf8083d4a852c446488d8d384bbc7cbe); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginaldf8083d4a852c446488d8d384bbc7cbe)): ?>
+<?php $component = $__componentOriginaldf8083d4a852c446488d8d384bbc7cbe; ?>
+<?php unset($__componentOriginaldf8083d4a852c446488d8d384bbc7cbe); ?>
+<?php endif; ?>
             </div>
+            <?php else: ?>
+            <div class="hidden sm:flex sm:items-center sm:ms-6">
+                <a href="<?php echo e(route('login')); ?>" class="inline-flex items-center px-4 py-2 border border-primary-600 rounded-lg text-sm font-semibold text-primary-600 hover:bg-primary-50 transition">
+                    <?php echo e(__('app.sign_in')); ?>
 
+                </a>
+            </div>
+            <?php endif; ?>
+
+            <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
-                <button @click="mobileOpen = ! mobileOpen" :class="scrolled ? 'text-gray-400 hover:text-gray-500 hover:bg-gray-100' : '<?php echo e($isHome ? 'text-white hover:text-white hover:bg-white/10' : 'text-gray-400 hover:text-gray-500 hover:bg-gray-100'); ?>'" class="inline-flex items-center justify-center p-2 rounded-lg focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150">
+                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': mobileOpen, 'inline-flex': ! mobileOpen }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! mobileOpen, 'inline-flex': mobileOpen }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Mobile menu -->
-    <div :class="{'block': mobileOpen, 'hidden': ! mobileOpen}" class="hidden sm:hidden border-t border-gray-100 bg-white">
+    <!-- Responsive Navigation Menu -->
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        <div class="pt-2 pb-3 space-y-1">
+            <?php if (isset($component)) { $__componentOriginald69b52d99510f1e7cd3d80070b28ca18 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.responsive-nav-link','data' => ['href' => route('dashboard'),'active' => request()->routeIs('dashboard')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('responsive-nav-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('dashboard')),'active' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('dashboard'))]); ?>
+                <?php echo e(__('Dashboard')); ?>
+
+             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
+<?php $attributes = $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
+<?php unset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
+<?php $component = $__componentOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
+<?php unset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
+<?php endif; ?>
+        </div>
+
+        <!-- Responsive Settings Options -->
         <?php if(auth()->guard()->check()): ?>
-            <div class="pt-2 pb-1 space-y-1">
-                <?php $active = request()->routeIs('dashboard'); ?>
-                <a href="<?php echo e(route('dashboard')); ?>" class="block px-4 py-2 text-sm font-medium <?php echo e($active ? 'text-primary-600 bg-primary-50' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'); ?> transition duration-150"><?php echo e(__('app.dashboard')); ?></a>
+        <div class="pt-4 pb-1 border-t border-gray-200">
+            <div class="px-4">
+                <div class="font-medium text-base text-gray-800"><?php echo e(Auth::user()->name); ?></div>
+                <div class="font-medium text-sm text-gray-500"><?php echo e(Auth::user()->email); ?></div>
             </div>
-            <div class="pt-1 pb-3 border-t border-gray-100">
-                <div class="px-4 py-2">
-                    <div class="font-medium text-sm text-gray-800"><?php echo e(Auth::user()->name); ?></div>
-                    <div class="text-xs text-gray-500"><?php echo e(Auth::user()->email); ?></div>
-                </div>
-                <div class="mt-1 space-y-1">
-                    <a href="<?php echo e(route('profile.edit')); ?>" class="block px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition duration-150"><?php echo e(__('app.profile')); ?></a>
-                    <form method="POST" action="<?php echo e(route('logout')); ?>">
-                        <?php echo csrf_field(); ?>
-                        <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition duration-150"><?php echo e(__('app.log_out')); ?></button>
-                    </form>
-                </div>
+
+            <div class="mt-3 space-y-1">
+                <?php if (isset($component)) { $__componentOriginald69b52d99510f1e7cd3d80070b28ca18 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.responsive-nav-link','data' => ['href' => route('profile.edit')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('responsive-nav-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('profile.edit'))]); ?>
+                    <?php echo e(__('Profile')); ?>
+
+                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
+<?php $attributes = $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
+<?php unset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
+<?php $component = $__componentOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
+<?php unset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
+<?php endif; ?>
+
+                <!-- Authentication -->
+                <form method="POST" action="<?php echo e(route('logout')); ?>">
+                    <?php echo csrf_field(); ?>
+
+                    <?php if (isset($component)) { $__componentOriginald69b52d99510f1e7cd3d80070b28ca18 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.responsive-nav-link','data' => ['href' => route('logout'),'onclick' => 'event.preventDefault();
+                                        this.closest(\'form\').submit();']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('responsive-nav-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('logout')),'onclick' => 'event.preventDefault();
+                                        this.closest(\'form\').submit();']); ?>
+                        <?php echo e(__('Log Out')); ?>
+
+                     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
+<?php $attributes = $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
+<?php unset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
+<?php $component = $__componentOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
+<?php unset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
+<?php endif; ?>
+                </form>
             </div>
+        </div>
         <?php else: ?>
-            <div class="pt-2 pb-3 space-y-1">
-                <a href="<?php echo e(route('home')); ?>" class="block px-4 py-2 text-sm font-medium text-primary-600 bg-primary-50">Home</a>
-                <a href="#services" class="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"><?php echo e(__('app.services')); ?></a>
-                <a href="#about" class="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"><?php echo e(__('app.about')); ?></a>
-                <a href="#download" class="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50"><?php echo e(__('app.download')); ?></a>
-            </div>
-            <div class="pt-1 pb-3 border-t border-gray-100 space-y-1">
-                <div class="flex gap-2 px-4 py-2">
-                    <a href="?lang=en" class="text-xs font-semibold px-3 py-1.5 rounded-lg <?php echo e(app()->getLocale() === 'en' ? 'bg-primary-100 text-primary-700' : 'bg-gray-100 text-gray-600'); ?> transition">English</a>
-                    <a href="?lang=bn" class="text-xs font-semibold px-3 py-1.5 rounded-lg <?php echo e(app()->getLocale() === 'bn' ? 'bg-primary-100 text-primary-700' : 'bg-gray-100 text-gray-600'); ?> transition">বাংলা</a>
-                </div>
-                <a href="<?php echo e(route('login')); ?>" class="block mx-4 text-center px-5 py-2.5 bg-primary-600 text-white text-sm font-semibold rounded-lg"><?php echo e(__('app.sign_in')); ?></a>
-            </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <?php if (isset($component)) { $__componentOriginald69b52d99510f1e7cd3d80070b28ca18 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.responsive-nav-link','data' => ['href' => route('login')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('responsive-nav-link'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('login'))]); ?>
+                <?php echo e(__('app.sign_in')); ?>
+
+             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
+<?php $attributes = $__attributesOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
+<?php unset($__attributesOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18)): ?>
+<?php $component = $__componentOriginald69b52d99510f1e7cd3d80070b28ca18; ?>
+<?php unset($__componentOriginald69b52d99510f1e7cd3d80070b28ca18); ?>
+<?php endif; ?>
+        </div>
         <?php endif; ?>
     </div>
 </nav>
