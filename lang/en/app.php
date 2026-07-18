@@ -112,4 +112,12 @@ return [
     'dropoff_placeholder' => 'e.g., Banani 11, Dhaka',
     'estimated_fare' => 'Estimated Fare',
     'confirm_booking' => 'Confirm Booking',
+    'payment_method' => 'Payment Method',
+    'route_map' => 'Route Map',
+    'click_map_to_set_points' => 'Click map to set pickup/dropoff',
+    'route_distance' => 'Distance',
+    'estimated_time' => 'Est. Time',
+    'set_from_map' => 'Set from map',
+    'distance_fare' => 'Distance fare',
+    'base_fare' => 'Base fare',
 ];

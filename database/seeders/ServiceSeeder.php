@@ -13,15 +13,15 @@ class ServiceSeeder extends Seeder
             [
                 'name' => 'Moto',
                 'slug' => 'moto',
-                'icon' => '🏍️',
+                'icon' => 'moto',
                 'base_fare' => 30.00,
                 'per_km_rate' => 12.00,
                 'is_active' => true,
             ],
             [
-                'name' => 'Car',
-                'slug' => 'car',
-                'icon' => '🚗',
+                'name' => 'Car AC',
+                'slug' => 'car-ac',
+                'icon' => 'car',
                 'base_fare' => 100.00,
                 'per_km_rate' => 35.00,
                 'is_active' => true,
@@ -29,7 +29,7 @@ class ServiceSeeder extends Seeder
             [
                 'name' => 'Parcel',
                 'slug' => 'parcel',
-                'icon' => '📦',
+                'icon' => 'archive-box',
                 'base_fare' => 50.00,
                 'per_km_rate' => 15.00,
                 'is_active' => true,

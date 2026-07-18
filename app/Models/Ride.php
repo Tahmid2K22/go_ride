@@ -12,15 +12,24 @@ class Ride extends Model
         'driver_id',
         'service_id',
         'pickup_address',
+        'pickup_lat',
+        'pickup_lng',
         'dropoff_address',
+        'dropoff_lat',
+        'dropoff_lng',
         'distance_km',
         'fare_amount',
+        'payment_method',
         'status',
     ];
 
     protected function casts(): array
     {
         return [
+            'pickup_lat' => 'decimal:7',
+            'pickup_lng' => 'decimal:7',
+            'dropoff_lat' => 'decimal:7',
+            'dropoff_lng' => 'decimal:7',
             'distance_km' => 'decimal:2',
             'fare_amount' => 'decimal:2',
         ];

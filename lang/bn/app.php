@@ -112,4 +112,12 @@ return [
     'dropoff_placeholder' => 'যেমন, বনানী ১১, ঢাকা',
     'estimated_fare' => 'আনুমানিক ভাড়া',
     'confirm_booking' => 'বুকিং নিশ্চিত করুন',
+    'payment_method' => 'পেমেন্ট মেথড',
+    'route_map' => 'রুট ম্যাপ',
+    'click_map_to_set_points' => 'মানচিত্রে ক্লিক করে পিকআপ/ড্রপ-অফ সেট করুন',
+    'route_distance' => 'দূরত্ব',
+    'estimated_time' => 'আনুমানিক সময়',
+    'set_from_map' => 'মানচিত্র থেকে সেট করুন',
+    'distance_fare' => 'দূরত্ব ভাড়া',
+    'base_fare' => 'বেস ভাড়া',
 ];
