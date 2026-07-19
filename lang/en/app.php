@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'services' => 'Services',
+    'services' => 'Ride',
     'about' => 'About',
     'download' => 'Download',
     'sign_in' => 'Sign In',
@@ -116,6 +116,10 @@ return [
     'dropoff_placeholder' => 'e.g., Banani 11, Dhaka',
     'estimated_fare' => 'Estimated Fare',
     'confirm_booking' => 'Confirm Booking',
+    'set_on_map' => 'Set on Map',
+    'tap_map_pickup' => 'Tap the map to set your pickup location',
+    'tap_map_dropoff' => 'Tap the map to set your drop-off location',
+    'total_fare' => 'Total Fare',
     'payment_method' => 'Payment Method',
     'route_map' => 'Route Map',
     'click_map_to_set_points' => 'Click map to set pickup/dropoff',
@@ -167,4 +171,15 @@ return [
     'confirm_ride' => 'Confirm Ride',
     'back' => 'Back',
     'fare' => 'fare',
+
+    // How to use GoRide
+    'how_to_use' => 'How to use GoRide',
+    'request_ride' => 'Request a ride',
+    'request_ride_desc' => 'Choose your destination, see your upfront price, and match with a nearby driver instantly.',
+    'enjoy_journey' => 'Enjoy your journey',
+    'enjoy_journey_desc' => 'Track your driver in real time, sit back, and relax while we get you there safely.',
+    'seamless_payment' => 'Seamless payment',
+    'seamless_payment_desc' => 'Pay effortlessly with cash or your digital wallet once you arrive at your destination.',
+    'matching_driver' => 'Matching you with a driver...',
+    'ride_booked' => 'Ride Booked Successfully! Driver is on the way',
 ];

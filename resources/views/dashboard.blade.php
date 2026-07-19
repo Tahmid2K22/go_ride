@@ -34,6 +34,36 @@
                 </div>
             </div>
 
+            <!-- User Information Section -->
+            <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm mb-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="flex items-center gap-5">
+                    <!-- Profile Picture or Placeholder Avatar -->
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-primary-500 to-primary-600 flex items-center justify-center text-white text-2xl font-bold shadow-md shadow-primary-500/20">
+                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900">{{ Auth::user()->name }}</h2>
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 mt-1 text-sm text-gray-500">
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                                {{ Auth::user()->email }}
+                            </span>
+                            <span class="hidden sm:inline text-gray-300">|</span>
+                            <span class="flex items-center gap-1">
+                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                                {{ Auth::user()->phone ?? 'No phone number' }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <a href="{{ route('profile.edit') }}" class="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-sm font-semibold transition border border-gray-200">
+                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>
+                        Edit Profile
+                    </a>
+                </div>
+            </div>
+
             <!-- Stats Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                 <div class="group bg-white rounded-2xl p-6 border border-gray-100 hover:border-primary-200 hover:shadow-lg transition-all duration-300">
@@ -574,7 +604,7 @@
 
                     const latLngs = coordinates.map(c => [c[1], c[0]]);
                     this.routeLine = L.polyline(latLngs, {
-                        color: '#6366f1',
+                        color: '#10b981',
                         weight: 5,
                         opacity: 0.8,
                         dashArray: null,
@@ -595,7 +625,7 @@
                         if (this.routeLine) this.map.removeLayer(this.routeLine);
                         this.routeLine = L.polyline(
                             [[this.pickupLat, this.pickupLng], [this.dropoffLat, this.dropoffLng]],
-                            { color: '#6366f1', weight: 5, opacity: 0.8, dashArray: '10, 10' }
+                            { color: '#10b981', weight: 5, opacity: 0.8, dashArray: '10, 10' }
                         ).addTo(this.map);
                     }
                 },
@@ -696,7 +726,7 @@
 
                 L.polyline(
                     [[pickupLat, pickupLng], [dropoffLat, dropoffLng]],
-                    { color: '#6366f1', weight: 5, opacity: 0.8, dashArray: '10, 10' }
+                    { color: '#10b981', weight: 5, opacity: 0.8, dashArray: '10, 10' }
                 ).addTo(map);
 
                 map.fitBounds(

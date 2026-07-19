@@ -17,7 +17,13 @@ class RideController extends Controller
 
     public function create(): View
     {
-        $services = Service::all();
+        $services = Service::all()->map(fn($s) => [
+            'id' => $s->id,
+            'name' => $s->name,
+            'icon' => $s->icon,
+            'base_fare' => (float) $s->base_fare,
+            'per_km_rate' => (float) $s->per_km_rate,
+        ])->values()->toArray();
 
         return view('book-ride', compact('services'));
     }

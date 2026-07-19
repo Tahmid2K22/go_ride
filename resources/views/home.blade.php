@@ -119,39 +119,29 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="py-20 bg-white relative -mt-16 z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 sm:p-10">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                    <div class="text-center">
-                        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary-50 mb-4">
-                            <svg class="w-7 h-7 text-primary-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5" /></svg>
-                        </div>
-                        <div class="text-4xl sm:text-5xl font-extrabold text-gray-900">2M+</div>
-                        <p class="mt-2 text-gray-500 font-medium">{{ __('app.app_downloads') }}</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-amber-50 mb-4">
-                            <svg class="w-7 h-7 text-amber-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H18.75m-7.5-3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
-                        </div>
-                        <div class="text-4xl sm:text-5xl font-extrabold text-gray-900">50M+</div>
-                        <p class="mt-2 text-gray-500 font-medium">{{ __('app.trips_completed') }}</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-emerald-50 mb-4">
-                            <svg class="w-7 h-7 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
-                        </div>
-                        <div class="text-4xl sm:text-5xl font-extrabold text-gray-900">100K+</div>
-                        <p class="mt-2 text-gray-500 font-medium">{{ __('app.active_drivers') }}</p>
-                    </div>
-                    <div class="text-center">
-                        <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-rose-50 mb-4">
-                            <svg class="w-7 h-7 text-rose-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
-                        </div>
-                        <div class="text-4xl sm:text-5xl font-extrabold text-gray-900">50+</div>
-                        <p class="mt-2 text-gray-500 font-medium">{{ __('app.cities_covered') }}</p>
-                    </div>
+    <!-- How It Works Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-12">{{ __('app.how_to_use') }}</h2>
+            <!-- Stacked vertical column layout -->
+            <div class="flex flex-col gap-6 max-w-xl mx-auto text-center">
+                <!-- Step 1 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl font-bold mb-4">1</div>
+                    <h3 class="text-xl font-semibold mb-2">{{ __('app.request_ride') }}</h3>
+                    <p class="text-gray-600 max-w-sm">{{ __('app.request_ride_desc') }}</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl font-bold mb-4">2</div>
+                    <h3 class="text-xl font-semibold mb-2">{{ __('app.enjoy_journey') }}</h3>
+                    <p class="text-gray-600 max-w-sm">{{ __('app.enjoy_journey_desc') }}</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl font-bold mb-4">3</div>
+                    <h3 class="text-xl font-semibold mb-2">{{ __('app.seamless_payment') }}</h3>
+                    <p class="text-gray-600 max-w-sm">{{ __('app.seamless_payment_desc') }}</p>
                 </div>
             </div>
         </div>
@@ -160,20 +150,20 @@
     <!-- Services Section -->
     <section id="services" class="py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-2xl mx-auto mb-16">
                 <span class="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 text-sm font-semibold rounded-full mb-4">{{ __('app.our_services') }}</span>
-                <h2 class="text-4xl sm:text-5xl font-extrabold text-gray-900">{{ __('app.services_subtitle') }}</h2>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900">{{ __('app.services_subtitle') }}</h2>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Bike -->
                 <div class="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-primary-200 hover:-translate-y-2">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-primary-50 rounded-bl-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="relative">
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mb-6 shadow-lg shadow-primary-500/30 group-hover:scale-110 transition-transform duration-500">
+                    <div class="relative text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 flex items-center justify-center mb-6 shadow-lg shadow-primary-500/30 group-hover:scale-110 transition-transform duration-500 mx-auto">
                             <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H18.75m-7.5-3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
                         </div>
                         <h3 class="text-xl font-bold text-gray-900">{{ __('app.bike') }}</h3>
-                        <p class="mt-3 text-gray-500 text-sm leading-relaxed">{{ __('app.bike_desc') }}</p>
+                        <p class="mt-3 text-gray-500 text-sm leading-relaxed text-center">{{ __('app.bike_desc') }}</p>
                         <a href="#" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-600 hover:text-primary-700 group/link">
                             {{ __('app.learn_more') }}
                             <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
@@ -183,12 +173,12 @@
                 <!-- Car -->
                 <div class="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-amber-200 hover:-translate-y-2">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-bl-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="relative">
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center mb-6 shadow-lg shadow-amber-500/30 group-hover:scale-110 transition-transform duration-500">
+                    <div class="relative text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center mb-6 shadow-lg shadow-amber-500/30 group-hover:scale-110 transition-transform duration-500 mx-auto">
                             <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H18.75m-7.5-3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
                         </div>
                         <h3 class="text-xl font-bold text-gray-900">{{ __('app.car') }}</h3>
-                        <p class="mt-3 text-gray-500 text-sm leading-relaxed">{{ __('app.car_desc') }}</p>
+                        <p class="mt-3 text-gray-500 text-sm leading-relaxed text-center">{{ __('app.car_desc') }}</p>
                         <a href="#" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-amber-600 hover:text-amber-700 group/link">
                             {{ __('app.learn_more') }}
                             <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
@@ -198,12 +188,12 @@
                 <!-- Food -->
                 <div class="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-rose-200 hover:-translate-y-2">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-rose-50 rounded-bl-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="relative">
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center mb-6 shadow-lg shadow-rose-500/30 group-hover:scale-110 transition-transform duration-500">
+                    <div class="relative text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-600 flex items-center justify-center mb-6 shadow-lg shadow-rose-500/30 group-hover:scale-110 transition-transform duration-500 mx-auto">
                             <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" /></svg>
                         </div>
                         <h3 class="text-xl font-bold text-gray-900">{{ __('app.food') }}</h3>
-                        <p class="mt-3 text-gray-500 text-sm leading-relaxed">{{ __('app.food_desc') }}</p>
+                        <p class="mt-3 text-gray-500 text-sm leading-relaxed text-center">{{ __('app.food_desc') }}</p>
                         <a href="#" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-rose-600 hover:text-rose-700 group/link">
                             {{ __('app.learn_more') }}
                             <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
@@ -213,12 +203,12 @@
                 <!-- Parcel -->
                 <div class="group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-emerald-200 hover:-translate-y-2">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-bl-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="relative">
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform duration-500">
+                    <div class="relative text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform duration-500 mx-auto">
                             <svg class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" /></svg>
                         </div>
                         <h3 class="text-xl font-bold text-gray-900">{{ __('app.parcel') }}</h3>
-                        <p class="mt-3 text-gray-500 text-sm leading-relaxed">{{ __('app.parcel_desc') }}</p>
+                        <p class="mt-3 text-gray-500 text-sm leading-relaxed text-center">{{ __('app.parcel_desc') }}</p>
                         <a href="#" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 hover:text-emerald-700 group/link">
                             {{ __('app.learn_more') }}
                             <svg class="w-4 h-4 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
@@ -237,8 +227,8 @@
                     <span class="inline-block px-4 py-1.5 bg-primary-100 text-primary-700 text-sm font-semibold rounded-full mb-4">{{ __('app.about') }}</span>
                     <h2 class="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">{{ __('app.why_choose') }}</h2>
                     <p class="mt-6 text-lg text-gray-500 leading-relaxed">{{ __('app.why_subtitle') }}</p>
-                    <div class="mt-10 space-y-6">
-                        <div class="flex items-start gap-5 p-5 rounded-2xl hover:bg-gray-50 transition-colors">
+                    <div class="mt-10 space-y-4">
+                        <div class="flex items-start gap-5 p-4 rounded-2xl hover:bg-gray-50 transition-colors">
                             <div class="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center shrink-0">
                                 <svg class="w-6 h-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                             </div>
@@ -247,7 +237,7 @@
                                 <p class="mt-1 text-gray-500">{{ __('app.safe_desc') }}</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-5 p-5 rounded-2xl hover:bg-gray-50 transition-colors">
+                        <div class="flex items-start gap-5 p-4 rounded-2xl hover:bg-gray-50 transition-colors">
                             <div class="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center shrink-0">
                                 <svg class="w-6 h-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                             </div>
@@ -256,7 +246,7 @@
                                 <p class="mt-1 text-gray-500">{{ __('app.affordable_desc') }}</p>
                             </div>
                         </div>
-                        <div class="flex items-start gap-5 p-5 rounded-2xl hover:bg-gray-50 transition-colors">
+                        <div class="flex items-start gap-5 p-4 rounded-2xl hover:bg-gray-50 transition-colors">
                             <div class="w-12 h-12 rounded-xl bg-primary-100 flex items-center justify-center shrink-0">
                                 <svg class="w-6 h-6 text-primary-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
                             </div>
@@ -268,20 +258,20 @@
                     </div>
                 </div>
                 <div class="relative">
-                    <div class="bg-gradient-to-br from-primary-600 to-primary-800 rounded-[2rem] p-10 text-white shadow-2xl shadow-primary-600/30">
+                    <div class="bg-primary-50 border border-primary-100 rounded-[2rem] p-10">
                         <div class="text-center">
-                            <div class="text-7xl font-extrabold mb-4">4.8</div>
+                            <div class="text-7xl font-extrabold text-primary-600 mb-4">4.8</div>
                             <div class="flex justify-center gap-1.5 mb-6">
                                 @for ($i = 0; $i < 5; $i++)
-                                    <svg class="w-7 h-7 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                                    <svg class="w-7 h-7 text-primary-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
                                 @endfor
                             </div>
-                            <p class="text-primary-100 text-xl font-medium">{{ __('app.rated_by') }}</p>
+                            <p class="text-primary-700 text-xl font-medium">{{ __('app.rated_by') }}</p>
                         </div>
                     </div>
                     <!-- Decorative -->
-                    <div class="absolute -top-6 -right-6 w-24 h-24 bg-primary-200 rounded-2xl -z-10"></div>
-                    <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-primary-100 rounded-2xl -z-10"></div>
+                    <div class="absolute -top-6 -right-6 w-24 h-24 bg-primary-100 rounded-2xl -z-10"></div>
+                    <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-primary-50 rounded-2xl -z-10"></div>
                 </div>
             </div>
         </div>

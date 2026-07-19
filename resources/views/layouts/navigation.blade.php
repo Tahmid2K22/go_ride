@@ -11,10 +11,26 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex items-center">
                     <x-nav-link :href="auth()->check() && auth()->user()->isDriver() ? route('driver.dashboard') : route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('driver.dashboard')">
                         {{ __('app.dashboard') }}
                     </x-nav-link>
+
+                    {{-- Service button for Ride booking - opens in new tab --}}
+                    @auth
+                        @if(auth()->user()->isRider())
+                            <a href="{{ route('rides.create') }}"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="inline-flex items-center gap-2 ms-4 px-4 py-2 bg-primary-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                {{ __('app.book_ride') }}
+                            </a>
+                        @endif
+                    @endauth
                 </div>
             </div>
 
@@ -78,6 +94,18 @@
             <x-responsive-nav-link :href="auth()->check() && auth()->user()->isDriver() ? route('driver.dashboard') : route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('driver.dashboard')">
                 {{ __('app.dashboard') }}
             </x-responsive-nav-link>
+
+            {{-- Service button for Ride booking (mobile) --}}
+            @auth
+                @if(auth()->user()->isRider())
+                    <a href="{{ route('rides.create') }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="block mx-3 my-2 px-4 py-2 bg-primary-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest text-center hover:bg-primary-700 transition">
+                        {{ __('app.book_ride') }}
+                    </a>
+                @endif
+            @endauth
         </div>
 
         <!-- Responsive Settings Options -->
