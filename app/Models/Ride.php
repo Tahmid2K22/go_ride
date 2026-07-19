@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Ride extends Model
 {
@@ -26,14 +27,16 @@ class Ride extends Model
     protected function casts(): array
     {
         return [
-            'pickup_lat' => 'decimal:7',
-            'pickup_lng' => 'decimal:7',
+            'pickup_lat'  => 'decimal:7',
+            'pickup_lng'  => 'decimal:7',
             'dropoff_lat' => 'decimal:7',
             'dropoff_lng' => 'decimal:7',
             'distance_km' => 'decimal:2',
             'fare_amount' => 'decimal:2',
         ];
     }
+
+    // ─── Relationships ────────────────────────────────────────────────────────
 
     public function user(): BelongsTo
     {
@@ -48,5 +51,14 @@ class Ride extends Model
     public function service(): BelongsTo
     {
         return $this->belongsTo(Service::class);
+    }
+
+    /**
+     * The archived history record for this ride (created by DB trigger
+     * when status changes to 'completed' or 'cancelled').
+     */
+    public function history(): HasOne
+    {
+        return $this->hasOne(RideHistory::class);
     }
 }

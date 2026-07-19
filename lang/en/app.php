@@ -55,6 +55,8 @@ return [
     'hero_tagline' => 'Your Ride, Your Way',
     'hero_title_short' => 'Your Daily Ride,',
     'hero_title' => 'The fastest way to get around. Book a ride in seconds, track your driver in real-time, and enjoy a safe, comfortable journey every time.',
+    'earn_from_goride' => 'Earn from GoRide',
+    'earn_from_goride_desc' => 'Join thousands of drivers earning on their own schedule. Apply now to become a GoRide driver partner.',
 
     // Auth - Login
     'login_title' => 'Welcome back',

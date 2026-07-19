@@ -115,6 +115,11 @@
                 </div>
             </div>
 
+            {{-- Recent Trip History (populated by ride_histories + DB trigger) --}}
+            <div class="mb-8">
+                <x-recent-trips />
+            </div>
+
             @if($activeRide)
                 <!-- Active Ride Status Card -->
                 <div class="bg-white rounded-2xl p-8 border border-gray-100 mb-8" x-data="{ show: true }" x-show="show" x-transition>
