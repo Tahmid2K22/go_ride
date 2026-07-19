@@ -190,7 +190,7 @@
                 <!-- Book a Ride with Map -->
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8"
                      x-data="bookingMap({
-                         services: {{ Js::from($services->map(fn($s) => ['id' => $s->id, 'name' => $s->name, 'base_fare' => (float) $s->base_fare, 'per_km_rate' => (float) $s->per_km_rate])) }},
+                         services: {{ Js::from($services->map(fn($s) => ['id' => $s->id, 'name' => $s->name, 'base_fare' => $s->base_fare, 'per_km_rate' => $s->per_km_rate])) }},
                          orsApiKey: '{{ config('services.ors.key') }}',
                          errors: {{ Js::from($errors->getMessages()) }}
                      })"

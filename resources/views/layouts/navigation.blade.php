@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="auth()->user()->isDriver() ? route('driver.dashboard') : route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('driver.dashboard')">
+                    <x-nav-link :href="auth()->check() && auth()->user()->isDriver() ? route('driver.dashboard') : route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('driver.dashboard')">
                         {{ __('app.dashboard') }}
                     </x-nav-link>
                 </div>
@@ -75,7 +75,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="auth()->user()->isDriver() ? route('driver.dashboard') : route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('driver.dashboard')">
+            <x-responsive-nav-link :href="auth()->check() && auth()->user()->isDriver() ? route('driver.dashboard') : route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('driver.dashboard')">
                 {{ __('app.dashboard') }}
             </x-responsive-nav-link>
         </div>

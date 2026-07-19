@@ -12,12 +12,10 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css'])
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
             <!-- Page Heading -->
             @isset($header)
                 <header class="bg-white shadow">
@@ -28,9 +26,11 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
+            <main class="pb-24 sm:pb-0">
                 {{ $slot }}
             </main>
+
+            <x-bottom-navbar />
         </div>
     </body>
 </html>

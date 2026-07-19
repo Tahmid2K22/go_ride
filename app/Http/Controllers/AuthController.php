@@ -44,7 +44,11 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'phone' => ['required', 'string', 'digits:10'],
+            'phone' => ['required', 'string', 'digits:10', function ($attribute, $value, $fail) {
+                if (User::where('phone', '+880' . $value)->exists()) {
+                    $fail('The phone number has already been taken.');
+                }
+            }],
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);
 

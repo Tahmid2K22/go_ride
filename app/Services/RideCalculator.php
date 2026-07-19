@@ -29,8 +29,4 @@ class RideCalculator
         return round($service->base_fare + ($service->per_km_rate * $distanceKm), 2);
     }
 
-    public function calculateFareForDistance(float $distanceKm, float $baseFare, float $perKmRate): float
-    {
-        return round($baseFare + ($perKmRate * $distanceKm), 2);
-    }
 }

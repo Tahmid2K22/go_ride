@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:rider')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/book-ride', [RideController::class, 'create'])->name('rides.create');
         Route::post('/rides', [RideController::class, 'store'])->name('rides.store');
     });
 

@@ -7,12 +7,20 @@ use App\Models\Service;
 use App\Services\RideCalculator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class RideController extends Controller
 {
     public function __construct(
         private readonly RideCalculator $calculator,
     ) {}
+
+    public function create(): View
+    {
+        $services = Service::all();
+
+        return view('book-ride', compact('services'));
+    }
 
     public function store(Request $request): RedirectResponse
     {
