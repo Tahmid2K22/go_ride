@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->role === 'rider';
     }
+
+    public function isPendingRider(): bool
+    {
+        return $this->role === 'pending_rider';
+    }
 }

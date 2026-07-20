@@ -1,5 +1,6 @@
-<x-driver-application.layout :steps="['Personal Info', 'Documents', 'Review']" :currentStep="2" :title="'Upload Documents'">
-    <form x-data="driverForm" @submit.prevent="nextStep" class="space-y-8" enctype="multipart/form-data">
+<x-driver-application.layout :steps="['Personal Info', 'Vehicle Info', 'Documents & Review']" :currentStep="3" :title="'Upload Documents'">
+    <form action="{{ route('driver-apply.submit') }}" method="POST" class="space-y-8" enctype="multipart/form-data">
+        @csrf
         <div class="text-center mb-8">
             <h1 class="text-3xl font-extrabold text-gray-900">Upload Required Documents</h1>
             <p class="mt-2 text-gray-500">We need to verify your identity and driving credentials</p>
@@ -21,25 +22,9 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <label class="relative cursor-pointer w-full">
-                        <input type="file" id="nid_front" name="nid_front" accept="image/jpeg,image/png,application/pdf"
-                               x-ref="nid_front" @change="handleFileUpload('nid_front', $event)"
-                               class="sr-only" required>
-                        <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-primary-400 hover:bg-primary-50 transition-colors">
-                            <svg class="w-10 h-10 mx-auto text-gray-400 mb-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                            </svg>
-                            <p class="text-gray-600 mb-1">Drag & drop or click to upload</p>
-                            <p class="text-xs text-gray-400">JPG, PNG, or PDF (max 5MB)</p>
-                        </div>
-                    </label>
-                    <x-input-error :messages="errors.nid_front" class="mt-2" />
-                    <template x-if="getFileName('nid_front')">
-                        <div class="mt-2 p-2 bg-green-50 rounded-lg flex items-center gap-2 text-green-700 text-sm">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            <span x-text="getFileName('nid_front')"></span>
-                        </div>
-                    </template>
+                    <input type="file" id="nid_front" name="nid_front" accept="image/jpeg,image/png,application/pdf" required
+                           class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                    @error('nid_front') <span class="mt-1 text-sm text-red-600">{{ $message }}</span> @enderror
                 </div>
             </div>
 
@@ -57,25 +42,9 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <label class="relative cursor-pointer w-full">
-                        <input type="file" id="nid_back" name="nid_back" accept="image/jpeg,image/png,application/pdf"
-                               x-ref="nid_back" @change="handleFileUpload('nid_back', $event)"
-                               class="sr-only" required>
-                        <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-primary-400 hover:bg-primary-50 transition-colors">
-                            <svg class="w-10 h-10 mx-auto text-gray-400 mb-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                            </svg>
-                            <p class="text-gray-600 mb-1">Drag & drop or click to upload</p>
-                            <p class="text-xs text-gray-400">JPG, PNG, or PDF (max 5MB)</p>
-                        </div>
-                    </label>
-                    <x-input-error :messages="errors.nid_back" class="mt-2" />
-                    <template x-if="getFileName('nid_back')">
-                        <div class="mt-2 p-2 bg-green-50 rounded-lg flex items-center gap-2 text-green-700 text-sm">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            <span x-text="getFileName('nid_back')"></span>
-                        </div>
-                    </template>
+                    <input type="file" id="nid_back" name="nid_back" accept="image/jpeg,image/png,application/pdf" required
+                           class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                    @error('nid_back') <span class="mt-1 text-sm text-red-600">{{ $message }}</span> @enderror
                 </div>
             </div>
 
@@ -93,38 +62,36 @@
                     </div>
                 </div>
                 <div class="mt-4">
-                    <label class="relative cursor-pointer w-full">
-                        <input type="file" id="driving_license" name="driving_license" accept="image/jpeg,image/png,application/pdf"
-                               x-ref="driving_license" @change="handleFileUpload('driving_license', $event)"
-                               class="sr-only" required>
-                        <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-primary-400 hover:bg-primary-50 transition-colors">
-                            <svg class="w-10 h-10 mx-auto text-gray-400 mb-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                            </svg>
-                            <p class="text-gray-600 mb-1">Drag & drop or click to upload</p>
-                            <p class="text-xs text-gray-400">JPG, PNG, or PDF (max 5MB)</p>
-                        </div>
-                    </label>
-                    <x-input-error :messages="errors.driving_license" class="mt-2" />
-                    <template x-if="getFileName('driving_license')">
-                        <div class="mt-2 p-2 bg-green-50 rounded-lg flex items-center gap-2 text-green-700 text-sm">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
-                            <span x-text="getFileName('driving_license')"></span>
-                        </div>
-                    </template>
+                    <input type="file" id="driving_license" name="driving_license" accept="image/jpeg,image/png,application/pdf" required
+                           class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-primary-50 file:text-primary-700 hover:file:bg-primary-100">
+                    @error('driving_license') <span class="mt-1 text-sm text-red-600">{{ $message }}</span> @enderror
                 </div>
             </div>
         </div>
 
+        <!-- Document Requirements Info -->
+        <div class="bg-blue-50 border border-blue-200 rounded-2xl p-6">
+            <h3 class="font-semibold text-blue-900 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+                Document Requirements
+            </h3>
+            <ul class="space-y-2 text-sm text-blue-800">
+                <li class="flex items-center gap-2"><svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Clear, readable photos or scans</li>
+                <li class="flex items-center gap-2"><svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> All four corners visible</li>
+                <li class="flex items-center gap-2"><svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> File size under 5MB each</li>
+                <li class="flex items-center gap-2"><svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> Valid (not expired) documents only</li>
+            </ul>
+        </div>
+
         <div class="flex justify-between gap-4 pt-4 border-t border-gray-100">
-            <button type="button" @click="prevStep()"
-                    class="px-8 py-3 bg-white border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
-                <svg class="w-5 h-5 mr-2 inline" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
+            <a href="{{ route('driver-apply.step2') }}"
+               class="px-8 py-3 bg-white border border-gray-300 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 inline-flex items-center">
+                <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>
                 Back
-            </button>
+            </a>
             <button type="submit"
                     class="px-8 py-3 bg-primary-600 text-white font-semibold rounded-xl hover:bg-primary-700 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
-                Continue to Review
+                Submit Application
                 <svg class="w-5 h-5 ml-2 inline" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
             </button>
         </div>

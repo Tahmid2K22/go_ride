@@ -155,8 +155,7 @@
                 formData: @json(session('driver_application', [])),
                 vehicleTypeLabels: {
                     'bike': 'Motorcycle / Bike',
-                    'car': 'Car (Sedan/Hatchback)',
-                    'cng': 'CNG / Auto-rickshaw'
+                    'car': 'Car (Sedan/Hatchback)'
                 },
 
                 async submitApplication() {

@@ -1,58 +1,183 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><strong>GoRide</strong> — A full-stack ride-hailing web application built with Laravel, Tailwind CSS, and Leaflet.js</p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## About GoRide
 
-## About Laravel
+GoRide is a ride-hailing platform (similar to Uber/Pathao) designed for the Bangladesh market. It supports three user roles — **Rider**, **Driver**, and **Admin** — with real-time map-based ride booking, dynamic fare calculation, driver onboarding, and an admin approval workflow.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Interactive Ride Booking** — Leaflet.js maps with OSRM routing for pickup/dropoff selection and real-time distance calculation
+- **Dynamic Fare Calculation** — Base fare + per-km pricing based on vehicle type (Moto, Car AC, Parcel)
+- **Multi-Role Authentication** — Rider, Driver, Admin with role-based access control
+- **Driver Onboarding** — 2-step application form with admin approval workflow
+- **Driver Dashboard** — Online/offline toggle, pending ride requests, earnings tracking, active ride management
+- **Admin Panel** — Application review, approve/reject with email notification, dashboard stats
+- **Ride Lifecycle** — pending → accepted → ongoing → completed/cancelled with automatic history archival
+- **Bilingual Support** — English and Bengali via URL parameter (`?lang=bn`)
+- **Payment Methods** — Cash and bKash
+- **Mobile-Responsive UI** — Bottom navbar, gradient design, Tailwind CSS
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tech Stack
 
-## Learning Laravel
+| Layer | Technology |
+|-------|-----------|
+| Backend | Laravel 11, PHP 8.2+ |
+| Frontend | Blade, Tailwind CSS, Alpine.js |
+| Maps | Leaflet.js 1.9.4, OSRM Routing, Nominatim Geocoding |
+| Build | Vite 8, PostCSS, Autoprefixer |
+| Database | MySQL |
+| Admin | Custom Blade views + Filament (SPA panel) |
+| Mail | SMTP (Gmail) |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Requirements
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP 8.2+
+- Composer
+- Node.js 18+
+- MySQL 8+
+- npm or yarn
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Installation
 
 ```bash
-composer require laravel/boost --dev
+# Clone the repository
+git clone <repository-url>
+cd go_ride
 
-php artisan boost:install
+# Install PHP dependencies
+composer install
+
+# Install JS dependencies
+npm install
+
+# Copy environment file
+cp .env.example .env
+
+# Generate application key
+php artisan key:generate
+
+# Configure database in .env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=go_ride
+DB_USERNAME=root
+DB_PASSWORD=
+
+# Run migrations and seed demo data
+php artisan migrate:fresh --seed
+
+# Create storage symlink for public access
+php artisan storage:link
+
+# Build frontend assets
+npm run build
+
+# Start the development server
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+The app will be available at `http://localhost:8000`.
 
-## Contributing
+## Demo Accounts
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | admin@goride.com.bd | password |
+| Rider | rider@goride.com.bd | password |
+| Driver (Bike) | driver.bike@goride.com.bd | password |
+| Driver (Car) | driver.car@goride.com.bd | password |
 
-## Code of Conduct
+## Project Structure
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```
+go_ride/
+├── app/
+│   ├── Http/Controllers/      # 8 controllers
+│   │   ├── AuthController         # Login, register, logout
+│   │   ├── RideController         # Book ride, store request
+│   │   ├── DriverApplicationController  # 2-step driver application
+│   │   ├── DriverDashboardController    # Driver dashboard + ride actions
+│   │   ├── AdminApplicationController   # Approve/reject applications
+│   │   └── DashboardController          # Rider dashboard
+│   ├── Models/                # User, Ride, Service, DriverProfile, RiderApplication, RideHistory
+│   ├── Services/
+│   │   └── RideCalculator     # Haversine distance + fare calculation
+│   ├── Mail/
+│   │   └── DriverCredentials  # Mailable for approved driver credentials
+│   └── Filament/              # Filament admin panel resources
+├── database/
+│   ├── migrations/            # 15 migrations (8 tables)
+│   └── seeders/               # ServiceSeeder, UserSeeder, RideSeeder
+├── lang/
+│   ├── en/app.php             # English translations (187+ keys)
+│   └── bn/app.php             # Bengali translations
+├── resources/
+│   ├── views/
+│   │   ├── layouts/           # app, guest, navigation
+│   │   ├── components/        # Bottom navbar, forms, modals (16+ components)
+│   │   ├── admin/             # Admin dashboard, application views
+│   │   ├── driver-application/ # Step 1, Step 2, success
+│   │   ├── auth/              # Login, register
+│   │   └── emails/            # Driver credentials email template
+│   ├── css/
+│   └── js/
+└── routes/web.php             # All routes
+```
 
-## Security Vulnerabilities
+## Database Schema
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Table | Description |
+|-------|-------------|
+| `users` | Users with role enum (rider, driver, admin, pending_rider), phone (+880), is_active |
+| `services` | Ride types with base_fare and per_km_rate |
+| `rides` | Ride requests with pickup/dropoff, distance, fare, status |
+| `driver_profiles` | Driver vehicle info, verification status, rating, online status |
+| `rider_applications` | Driver applications with status workflow |
+| `ride_histories` | Archived rides (auto-populated via MySQL trigger) |
+
+## Ride Services & Pricing
+
+| Service | Base Fare (TK) | Per KM (TK) |
+|---------|---------------|-------------|
+| Moto | 30 | 12 |
+| Car AC | 100 | 35 |
+| Parcel | 50 | 15 |
+
+## Routes
+
+| Route | Description |
+|-------|-------------|
+| `GET /` | Landing page |
+| `GET /book-ride` | Ride booking page (rider) |
+| `GET /dashboard` | Rider dashboard |
+| `GET /driver/dashboard` | Driver dashboard |
+| `GET /admin/dashboard` | Admin dashboard |
+| `GET /apply-to-drive` | Driver application form |
+| `GET /admin/applications` | Admin application list |
+
+## Environment Variables
+
+```env
+# Database
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=go_ride
+DB_USERNAME=root
+DB_PASSWORD=
+
+# Mail (Gmail SMTP)
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your-email@gmail.com
+MAIL_PASSWORD=your-app-password
+
+# Optional: OpenRouteService API key for advanced routing
+OPENROUTESERVICE_API_KEY=your-key
+```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is for educational purposes.

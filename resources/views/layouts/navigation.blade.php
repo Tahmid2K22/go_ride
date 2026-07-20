@@ -12,13 +12,22 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex items-center">
-                    <x-nav-link :href="auth()->check() && auth()->user()->isDriver() ? route('driver.dashboard') : route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('driver.dashboard')">
-                        {{ __('app.dashboard') }}
-                    </x-nav-link>
-
-                    {{-- Service button for Ride booking - opens in new tab --}}
                     @auth
-                        @if(auth()->user()->isRider())
+                        @if(auth()->user()->isAdmin())
+                            <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                                {{ __('app.dashboard') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('admin.applications.index')" :active="request()->routeIs('admin.applications.*')">
+                                {{ __('Applications') }}
+                            </x-nav-link>
+                        @elseif(auth()->user()->isDriver())
+                            <x-nav-link :href="route('driver.dashboard')" :active="request()->routeIs('driver.dashboard')">
+                                {{ __('app.dashboard') }}
+                            </x-nav-link>
+                        @else
+                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                                {{ __('app.dashboard') }}
+                            </x-nav-link>
                             <a href="{{ route('rides.create') }}"
                                target="_blank"
                                rel="noopener noreferrer"
@@ -91,13 +100,22 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="auth()->check() && auth()->user()->isDriver() ? route('driver.dashboard') : route('dashboard')" :active="request()->routeIs('dashboard') || request()->routeIs('driver.dashboard')">
-                {{ __('app.dashboard') }}
-            </x-responsive-nav-link>
-
-            {{-- Service button for Ride booking (mobile) --}}
             @auth
-                @if(auth()->user()->isRider())
+                @if(auth()->user()->isAdmin())
+                    <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                        {{ __('app.dashboard') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('admin.applications.index')" :active="request()->routeIs('admin.applications.*')">
+                        {{ __('Applications') }}
+                    </x-responsive-nav-link>
+                @elseif(auth()->user()->isDriver())
+                    <x-responsive-nav-link :href="route('driver.dashboard')" :active="request()->routeIs('driver.dashboard')">
+                        {{ __('app.dashboard') }}
+                    </x-responsive-nav-link>
+                @else
+                    <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('app.dashboard') }}
+                    </x-responsive-nav-link>
                     <a href="{{ route('rides.create') }}"
                        target="_blank"
                        rel="noopener noreferrer"

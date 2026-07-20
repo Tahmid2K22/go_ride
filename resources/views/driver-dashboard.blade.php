@@ -272,6 +272,7 @@
 
                                 <form method="POST" action="{{ route('driver.accept-ride', $ride) }}">
                                     @csrf
+                                    @method('PATCH')
                                     <button type="submit" class="w-full py-2.5 bg-primary-600 hover:bg-primary-700 text-white rounded-xl font-semibold text-sm transition">
                                         {{ __('app.accept_ride') }}
                                     </button>

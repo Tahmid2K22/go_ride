@@ -36,12 +36,10 @@ class AdminPanelProvider extends PanelProvider
             ->middleware([
                 'web',
                 'auth',
-                \App\Http\Middleware\CheckRole::class . ':admin',
             ])
             ->authMiddleware([
                 'web',
                 'auth',
-                \App\Http\Middleware\CheckRole::class . ':admin',
             ])
             ->databaseNotifications()
             ->spa();

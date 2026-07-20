@@ -28,7 +28,7 @@ return new class extends Migration
             AFTER UPDATE ON `rides`
             FOR EACH ROW
             BEGIN
-                -- Only fire when status actually changed TO a terminal state
+
                 IF NEW.status IN ('completed', 'cancelled')
                    AND OLD.status NOT IN ('completed', 'cancelled')
                 THEN
@@ -42,7 +42,6 @@ return new class extends Migration
                             NEW.user_id,
                             NEW.pickup_address,
                             NEW.dropoff_address,
-                            -- Fetch the service name at trigger time for denormalisation
                             (SELECT name FROM services WHERE id = NEW.service_id LIMIT 1),
                             NEW.fare_amount,
                             NEW.status,             -- 'completed' or 'cancelled'

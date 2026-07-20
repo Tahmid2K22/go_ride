@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminApplicationController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DriverApplicationController;
@@ -22,8 +23,6 @@ Route::get('/apply-to-drive', [DriverApplicationController::class, 'create'])->n
 Route::post('/apply-to-drive/step1', [DriverApplicationController::class, 'storeStep1'])->name('driver-apply.step1');
 Route::get('/apply-to-drive/step2', [DriverApplicationController::class, 'step2'])->name('driver-apply.step2');
 Route::post('/apply-to-drive/step2', [DriverApplicationController::class, 'storeStep2'])->name('driver-apply.step2.store');
-Route::get('/apply-to-drive/step3', [DriverApplicationController::class, 'step3'])->name('driver-apply.step3');
-Route::post('/apply-to-drive/step3', [DriverApplicationController::class, 'storeStep3'])->name('driver-apply.submit');
 Route::get('/apply-to-drive/success', [DriverApplicationController::class, 'success'])->name('driver-apply.success');
 
 Route::middleware('auth')->group(function () {
@@ -39,7 +38,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::get('/book-ride', [RideController::class, 'create'])->name('rides.create');
         Route::post('/rides', [RideController::class, 'store'])->name('rides.store');
-        // AJAX alias used by the JS booking flow (returns JSON 201)
         Route::post('/ride-requests', [RideController::class, 'store'])->name('ride-requests.store');
     });
 
@@ -50,5 +48,16 @@ Route::middleware('auth')->group(function () {
         Route::patch('/ride/{ride}/complete', [DriverDashboardController::class, 'completeRide'])->name('complete-ride');
         Route::patch('/ride/{ride}/cancel', [DriverDashboardController::class, 'cancelRide'])->name('cancel-ride');
         Route::post('/toggle-online', [DriverDashboardController::class, 'toggleOnline'])->name('toggle-online');
+    });
+
+    // Admin Routes
+    Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dashboard', fn() => view('admin.dashboard'))->name('dashboard');
+        
+        // Driver Applications
+        Route::get('/applications', [AdminApplicationController::class, 'index'])->name('applications.index');
+        Route::get('/applications/{application}', [AdminApplicationController::class, 'show'])->name('applications.show');
+        Route::post('/applications/{application}/approve', [AdminApplicationController::class, 'approve'])->name('applications.approve');
+        Route::post('/applications/{application}/reject', [AdminApplicationController::class, 'reject'])->name('applications.reject');
     });
 });

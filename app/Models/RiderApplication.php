@@ -11,6 +11,7 @@ class RiderApplication extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'name',
         'email',
         'phone',
@@ -29,6 +30,14 @@ class RiderApplication extends Model
             'verification_documents' => 'array',
             'approved_at' => 'datetime',
         ];
+    }
+
+    /**
+     * Get the applicant's user account.
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**
@@ -105,4 +114,4 @@ class RiderApplication extends Model
         $docs = $this->verification_documents ?? [];
         return $docs[$key] ?? null;
     }
-};
+}

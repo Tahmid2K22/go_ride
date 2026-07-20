@@ -11,8 +11,8 @@ return new class extends Migration
         Schema::create('driver_profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('nid_number')->unique();
-            $table->string('license_number')->unique();
+            $table->string('nid_number')->nullable();
+            $table->string('license_number')->nullable();
             $table->string('vehicle_type');
             $table->string('vehicle_plate_number');
             $table->enum('verification_status', ['pending', 'approved', 'rejected'])->default('pending');

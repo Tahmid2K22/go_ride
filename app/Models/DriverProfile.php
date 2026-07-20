@@ -15,12 +15,17 @@ class DriverProfile extends Model
         'vehicle_plate_number',
         'verification_status',
         'is_online',
+        'is_verified',
+        'rating',
+        'total_rides',
     ];
 
     protected function casts(): array
     {
         return [
             'is_online' => 'boolean',
+            'is_verified' => 'boolean',
+            'rating' => 'decimal:2',
         ];
     }
 
